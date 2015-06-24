@@ -66,10 +66,14 @@
   <ItemGroup>
     <ClInclude Include="BigInt.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="MathLib.h" />
+    <ClInclude Include="Problems.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigInt.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MathLib.cpp" />
+    <ClCompile Include="Problems.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="p022_names.txt" />
