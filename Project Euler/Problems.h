@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <sstream>
 
 #include "MathLib.h"
 #include "Data.h"
@@ -78,6 +79,16 @@ public:
 	void problem67();
 	void problem68();
 	void problem69();
+	void problem70();
+	void problem71();
+	void problem72();
+	void problem73();
+	void problem74();
+	void problem75();
+	void problem76();
+	void problem77();
+	void problem78();
+	void problem79();
 
 protected:
 

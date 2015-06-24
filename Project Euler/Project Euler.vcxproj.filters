@@ -38,7 +38,10 @@
     <ClCompile Include="MathLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Problems.cpp">
+    <ClCompile Include="Problems51_100.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Problems1_50.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -55,5 +58,10 @@
     <Text Include="p059_cipher.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="p067_triangle.txt">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
