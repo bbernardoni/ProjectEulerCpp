@@ -98,7 +98,7 @@ void problem69();
 
 int main ()
 {
-	problem65();
+	problem66();
 	system("pause");
 	return 0;
 }
