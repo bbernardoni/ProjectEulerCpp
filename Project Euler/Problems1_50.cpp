@@ -489,7 +489,7 @@ void Problems::problem30()
 }
 
 static const int pence[] = {1, 2, 5, 10, 20, 50, 100, 200};
-long problem31r(long ways, int coin, int moneyLeft)
+long Problems::problem31r(long ways, int coin, int moneyLeft)
 {
 	if(coin == 0)
 		return ways+1;
@@ -796,7 +796,7 @@ void Problems::problem40()
 	printf("The answer to problem 40 is '%d'\n", a);
 }
 
-long problem41r(bool *digitsUsed, int maxDigits, int digitsLeft, long num){
+long Problems::problem41r(bool *digitsUsed, int maxDigits, int digitsLeft, long num){
 	if(digitsLeft == 0){
 		if(MathLib::isPrime(num))
 			return num;
@@ -862,7 +862,7 @@ void Problems::problem42()
 }
 
 static const int primes7[] = {1,2,3,5,7,11,13,17}; // 1 is added for algorithm simplification
-long long problem43r(bool *digitsUsed, int *digits, int curDigit){
+long long Problems::problem43r(bool *digitsUsed, int *digits, int curDigit){
 	long long sum = 0;
 	if(curDigit == -1){
 		for(int i=0; i<10; ++i){

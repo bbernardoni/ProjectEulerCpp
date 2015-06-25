@@ -40,6 +40,7 @@ public:
 	void problem28();
 	void problem29();
 	void problem30();
+	long problem31r(long ways, int coin, int moneyLeft);
 	void problem31();
 	void problem32();
 	void problem33();
@@ -50,8 +51,10 @@ public:
 	void problem38();
 	void problem39();
 	void problem40();
+	long problem41r(bool *digitsUsed, int maxDigits, int digitsLeft, long num);
 	void problem41();
 	void problem42();
+	long long problem43r(bool *digitsUsed, int *digits, int curDigit);
 	void problem43();
 	void problem44();
 	void problem45();
@@ -69,7 +72,9 @@ public:
 	void problem57();
 	void problem58();
 	void problem59();
+	long problem60r(long *primes, long *mask, int level, int prev);
 	void problem60();
+	int problem61r(int prev, int level);
 	void problem61();
 	void problem62();
 	void problem63();
@@ -82,6 +87,7 @@ public:
 	void problem70();
 	void problem71();
 	void problem72();
+	long problem73r(int n1, int d1, int n2, int d2);
 	void problem73();
 	void problem74();
 	void problem75();

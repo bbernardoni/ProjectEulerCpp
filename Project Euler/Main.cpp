@@ -8,7 +8,7 @@
 int main ()
 {
 	Problems p;
-	p.problem70();
+	p.problem73();
 	system("pause");
 	return 0;
 }

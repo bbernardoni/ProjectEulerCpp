@@ -396,7 +396,7 @@ void Problems::problem59()
 	printf("\nThe answer to problem 59 is '%d'\n", a);
 }
 
-long problem60r(long *primes, long *mask, int level, int prev)
+long Problems::problem60r(long *primes, long *mask, int level, int prev)
 {
 	if(level == 5){
 		long sum=0;
@@ -439,7 +439,7 @@ int polyNum[6][100];
 int polyI[6];
 bool used[6];
 int seqNum[6];
-int problem61r(int prev, int level)
+int Problems::problem61r(int prev, int level)
 {
 	if(level == 5){
 		if(seqNum[4]%100 != seqNum[5]/100)
@@ -718,34 +718,135 @@ void Problems::problem69()
 
 void Problems::problem70()
 {
-	const static int PRIMES_BELOW_3162 = 446;
-	double phiPerN, maxPhiPerN = 1.01;
-	long primes[PRIMES_BELOW_3162];
-	long a=1;
+	const static int PRIMES_TESTING = 1000;
+	double phiPerN, maxPhiPerN = 0.0;
+	long primes[PRIMES_TESTING];
+	int digitDistro1[10];
+	int digitDistro2[10];
+	long a=1, temp;
 	int j=0;
 	primes[j++] = 2;
-	for(long i=3; i<3162; i+=2){
+	for(long i=3; j<PRIMES_TESTING; i+=2){
 		if(MathLib::isPrime(i))
 			primes[j++] = i;
 	}
 	for(long i=10; i<10000000; ++i){
-		int sqrtI = (int)sqrt((double)i);
 		phiPerN = 1.0;
-		for(j=0; primes[j]<=sqrtI&&j<PRIMES_BELOW_3162; ++j){
-			if(primes[j]%i == 0)
+		temp = i;
+		for(j=0; primes[j]<=temp&&j<PRIMES_TESTING; ++j){
+			if(temp%primes[j] == 0){
 				phiPerN *= (1.0 - 1.0/primes[j]);
+				while(temp%primes[j] == 0)
+					temp /= primes[j];
+				if(phiPerN < maxPhiPerN+0.00000001)
+					break;
+			}
 		}
-		if(phiPerN < maxPhiPerN)
+		if(phiPerN < maxPhiPerN+0.00000001)
 			continue;
-		//test for permutation
+		if(phiPerN == 1.0)
+			continue;
+		for(int k=0; k<10; ++k){
+			digitDistro1[k] = 0;
+			digitDistro2[k] = 0;
+		}
+		temp = i;
+		while(temp){
+			digitDistro1[temp%10]++;
+			temp /= 10;
+		}
+		temp = (long)(i*phiPerN+0.0001);
+		while(temp){
+			digitDistro2[temp%10]++;
+			temp /= 10;
+		}
+		int l;
+		for(l=0; l<10; ++l){
+			if(digitDistro1[l] != digitDistro2[l])
+				break;
+		}
+		if(l==10){
+			maxPhiPerN = phiPerN;
+			a=i;
+		}
 	}
 	printf("The answer to problem 70 is '%d'\n", a);
+}
+
+void Problems::problem71()
+{
+	long n=2, d=5, a;
+	while(d<1000000){
+		a = n;
+		n+=3;
+		d+=7;
+		for(int i=2; i<n; i+=2){
+			if(n%i == 0 && d%i == 0){
+				n/=i;
+				d/=i;
+			}
+			if(i==2)
+				i--;
+		}
+	}
+	printf("The answer to problem 71 is '%d'\n", a);
+}
+
+void Problems::problem72()
+{
+	const static int PRIMES_BELOW_1E6 = 78498;
+	long primes[PRIMES_BELOW_1E6];
+	int j=0;
+	primes[j++] = 2;
+	long temp;
+	long long a=0;
+	double phi;
+	for(long i=3; j<PRIMES_BELOW_1E6; i+=2){
+		if(MathLib::isPrime(i))
+			primes[j++] = i;
+	}
+	for(long i=2; i<=8; ++i){
+		phi = (double)i;
+		temp = i;
+		for(int j=0; primes[j]<=temp&&j<PRIMES_BELOW_1E6; ++j){
+			if(temp%primes[j] == 0){
+				phi *= (1.0 - 1.0/primes[j]);
+				while(temp%primes[j] == 0)
+					temp /= primes[j];
+			}
+		}
+		a += (long)(phi+0.001);
+	}
+	printf("The answer to problem 72 is '%lld'\n", a);
+}
+
+long Problems::problem73r(int n1, int d1, int n2, int d2)
+{
+	int n = n1+n2;
+	int d = d1+d2;
+	for(int i=2; i<n; i+=2){
+		if(n%i == 0 && d%i == 0){
+			n/=i;
+			d/=i;
+		}
+		if(i==2)
+			i--;
+	}
+	if(d>12000)
+		return 0;
+	return 1+problem73r(n1, d1, n, d);
+	return 1+problem73r(n, d, n2, d2);
+}
+void Problems::problem73()
+{
+	long a=problem73r(1,3,1,2);
+	printf("The answer to problem 73 is '%d'\n", a);
 }
 
 /*
 void Problems::problem()
 {
-	
+	long a=0;
 	printf("The answer to problem  is '%d'\n", a);
 }
 */
