@@ -2,6 +2,8 @@
 
 #include <fstream>
 #include <sstream>
+#include <vector>
+#include <algorithm>
 
 #include "MathLib.h"
 #include "Data.h"
@@ -87,7 +89,6 @@ public:
 	void problem70();
 	void problem71();
 	void problem72();
-	long problem73r(int n1, int d1, int n2, int d2);
 	void problem73();
 	void problem74();
 	void problem75();

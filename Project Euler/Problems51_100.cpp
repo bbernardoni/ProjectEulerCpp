@@ -820,27 +820,74 @@ void Problems::problem72()
 	printf("The answer to problem 72 is '%lld'\n", a);
 }
 
-long Problems::problem73r(int n1, int d1, int n2, int d2)
-{
-	int n = n1+n2;
-	int d = d1+d2;
-	for(int i=2; i<n; i+=2){
-		if(n%i == 0 && d%i == 0){
-			n/=i;
-			d/=i;
-		}
-		if(i==2)
-			i--;
-	}
-	if(d>12000)
-		return 0;
-	return 1+problem73r(n1, d1, n, d);
-	return 1+problem73r(n, d, n2, d2);
-}
 void Problems::problem73()
 {
-	long a=problem73r(1,3,1,2);
+	long a = 0;
+	for(int i=5; i<=12000; ++i){
+		for(int j=i/3+1; j<(i+1)/2; ++j)
+			if(MathLib::gcd(i, j) == 1)
+				a++;
+	}
 	printf("The answer to problem 73 is '%d'\n", a);
+}
+
+void Problems::problem74()
+{
+	long a=0;
+	long cycle[61];
+	long facts[10];
+	int j;
+	long num, temp;
+	facts[0] = 1;
+	for(int i=1; i<10; ++i){
+		facts[i] = facts[i-1] * i;
+	}
+	for(int i=1; i<1000000; ++i){
+		j=0;
+		num=i;
+		cycle[j++] = i;
+		while(true){
+			temp = num;
+			num = 0;
+			while(temp){
+				num += facts[temp%10];
+				temp /= 10;
+			}
+			for(int k=0; k<j; ++k){
+				if(num==cycle[k])
+					goto cycleDone;
+			}
+			cycle[j++] = num;
+		}
+cycleDone:
+		if(j==60)
+			a++;
+	}
+	printf("The answer to problem 74 is '%d'\n", a);
+}
+
+void Problems::problem75()
+{
+	long a=0;//11;
+	int k=0, l;
+	std::vector<long> perim;
+	perim.push_back(12);
+	for(long i=2; 2*i*(i+1)<=1500000; ++i){
+		for(long j=1; i>j && 2*i*(i+j)<=1500000; ++j){
+			if(i%2 == j%2)
+				continue;
+			if(MathLib::gcd(i, j) != 1)
+				continue;
+			if(std::find(perim.begin(), perim.end(), 2*i*(i+j)) == perim.end())
+				perim[k++] = 2*i*(i+j);
+			if(k>100000)
+				break;
+		}
+	}
+	for(long i=12; i<1500000; ++i){
+
+	}
+	printf("The answer to problem 75 is '%d'\n", a);
 }
 
 /*

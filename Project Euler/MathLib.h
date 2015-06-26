@@ -18,6 +18,7 @@ public:
 	static void swap(char *a, int bufLen, int i, int j);
 	static long factorial(long n);
 	static bool isPentagonal(long long n);
+	static long gcd(long a, long b);
 
 	static const int SWAP_BUFFER_LENGTH = 30;
 };
