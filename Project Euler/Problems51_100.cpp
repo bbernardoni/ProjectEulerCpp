@@ -890,6 +890,71 @@ void Problems::problem75()
 	printf("The answer to problem 75 is '%d'\n", a);
 }
 
+void Problems::problem76()
+{
+	long sums[100][100];
+	for(int i=0; i<100; ++i){
+		for(int j=0; j<=i; ++j){
+			if(j==0)
+				sums[i][j] = 1;
+			else if(j<(i+1)/2)
+				sums[i][j] = sums[i-j-1][j] + sums[i][j-1];
+			else if(j!=i)
+				sums[i][j] = sums[i-j-1][i-j-1] + sums[i][j-1];
+			else
+				sums[i][j] = 1 + sums[i][j-1];
+		}
+	}
+	printf("The answer to problem 76 is '%d'\n", sums[99][98]);
+}
+
+void Problems::problem77()
+{
+	int i;
+	int sums[100][100];
+	for(i=0; i<100; ++i){
+		for(int j=0; j<=i; ++j){
+			if(j==0)
+				sums[i][j] = 0;
+			else if(!MathLib::isPrime(j+1))
+				sums[i][j] = sums[i][j-1];
+			else if(j<(i+1)/2)
+				sums[i][j] = sums[i-j-1][j] + sums[i][j-1];
+			else if(j!=i)
+				sums[i][j] = sums[i-j-1][i-j-1] + sums[i][j-1];
+			else
+				sums[i][j] = 1 + sums[i][j-1];
+		}
+		if(i>0)
+			if(sums[i][i-1]>5000)
+				break;
+	}
+	printf("The answer to problem 77 is '%d'\n", i+1);
+}
+
+//p(n) = sum from k=1 to n ((-1)^(k+1) * (p(n-1/2k(3k-1)) + p(n-1/2k(3k+1)))
+void Problems::problem78()
+{
+	int i;
+	static const int depth = 300;
+	long long sums[depth][depth];
+	for(i=0; i<depth; ++i){
+		for(int j=0; j<=i; ++j){
+			if(j==0)
+				sums[i][j] = 1;
+			else if(j<(i+1)/2)
+				sums[i][j] = sums[i-j-1][j] + sums[i][j-1];
+			else if(j!=i)
+				sums[i][j] = sums[i-j-1][i-j-1] + sums[i][j-1];
+			else
+				sums[i][j] = sums[i][j-1] + 1;
+		}
+		if(sums[i][i]%1000000 == 0)
+			break;
+	}
+	printf("The answer to problem 78 is '%d'\n", i+1);
+}
+
 /*
 void Problems::problem()
 {
